@@ -6,7 +6,7 @@
 import scrapy
 
 
-class HardhatItem(scrapy.Item):
+class ConstructionMaterialItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     pass
