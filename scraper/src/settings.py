@@ -9,8 +9,8 @@
 
 BOT_NAME = "hardhat"
 
-SPIDER_MODULES = ["spiders"]
-NEWSPIDER_MODULE = "spiders"
+SPIDER_MODULES = ["src.spiders"]
+NEWSPIDER_MODULE = "src.spiders"
 
 ADDONS = {}
 
