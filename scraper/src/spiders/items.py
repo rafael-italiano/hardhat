@@ -6,7 +6,7 @@
 import scrapy
 
 
-class LeroyMerlinItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+class LeroyMerlinCategory(scrapy.Item):
+    parent_category = scrapy.Field()
+    subcategory_name = scrapy.Field()
+    url = scrapy.Field()
