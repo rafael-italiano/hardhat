@@ -1,10 +1,11 @@
 from fastapi import FastAPI
-from services.categories_services import LeroyMerlinCategoryService
+
+from scraper.src.services.products_service import ProductsService
 
 app = FastAPI(title="LeroyMerlin Categories API")
 
-@app.get("/categories")
+@app.get("/process_products")
 def get_categories():
-    service = LeroyMerlinCategoryService()
+    service = ProductsService()
     results = service.process()  # returns the dict from your service
-    return {"categories": results}
+    return {"results": results}
