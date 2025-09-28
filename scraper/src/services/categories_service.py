@@ -7,8 +7,8 @@ class LeroyMerlinCategoryService(BaseService):
     def __init__(self) -> None:
         self.results = []
 
-    def process_item(self, item) -> None:
-        
+    def _process_item(self, item) -> None:
+
         self.results.append(item)
         return None
     
@@ -17,7 +17,7 @@ class LeroyMerlinCategoryService(BaseService):
         process = CrawlerProcess()
         process.crawl(
             LeroyMerlinCategoriesSpider,
-            item_callback=self.process_item
+            item_callback=self._process_item
         )
         process.start()
         return self.results

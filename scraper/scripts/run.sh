@@ -1,4 +1,7 @@
+#!/usr/bin/env bash
+
 podman run \
     -p 8000:8000 \
-    -v /home/rafael/projects/github.com/rafael-italiano/hardhat/scraper/src:/app \
+    -v ./src:/app \
+    --env-file .env \
     localhost/hardhat-scraper-dev
