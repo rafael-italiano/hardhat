@@ -5,10 +5,10 @@ from services.categories_service import LeroyMerlinCategoryService
 from services.categories_service_mock import LeroyMerlinCategoryServiceMock
 from services.products_service import ProductsService
 from services.products_service_mock import ProductsServiceMock
-
+from services.models import Product
 app = FastAPI(title="LeroyMerlin Categories API")
 
 @app.get("/")
-def get_categories():
+def get_categories() -> Product:
     service = ProductsServiceMock()
     return service.process()

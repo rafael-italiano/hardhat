@@ -7,7 +7,7 @@ class Product:
     category: str
     subcategory: str
     brand: str
-    sellers: list
+    sellers: list[str]
     product_id: int
     price: float
     updated_at: str
