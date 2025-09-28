@@ -81,11 +81,8 @@ class LeroyMerlinClient(BaseAPI):
         response.raise_for_status()
         return response.json()
 
-    def close(self):
-        self.session.close()
-
     def __enter__(self):
         return self
 
     def __exit__(self, exc_type, exc, tb):
-        self.close()
+        self.session.close()
