@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 podman run \
     -p 8000:8000 \
     -v ./src:/app \
