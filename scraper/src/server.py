@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from scraper.src.services.products_service import ProductsService
+from services.products_service import ProductsService
 
 app = FastAPI(title="LeroyMerlin Categories API")
 

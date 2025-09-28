@@ -1,0 +1,2 @@
+podman build -t hardhat-scraper -f /home/rafael/projects/github.com/rafael-italiano/hardhat/scraper/Containerfile
+podman build -t hardhat-scraper-dev -f /home/rafael/projects/github.com/rafael-italiano/hardhat/scraper/Containerfile.dev
