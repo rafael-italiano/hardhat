@@ -43,8 +43,9 @@ class LeroyMerlinClient(BaseAPI):
             results = response['results'][0]
             hits.extend(results['hits'])
         return hits
+    
     def _make_request(self, page: int, category:str, subcategory:str)-> dict:
-        
+
         body = {
             "requests": [
                 {
@@ -79,17 +80,12 @@ class LeroyMerlinClient(BaseAPI):
         )
         response.raise_for_status()
         return response.json()
+
     def close(self):
-        """Close the session"""
         self.session.close()
 
+    def __enter__(self):
+        return self
 
-# Example usage
-if __name__ == "__main__":
-    client = LeroyMerlinClient()
-
-    category = "Aço para Construção"
-    subcategory= "Acessórios para Aço"
-    result = client.get(category, subcategory)
-    print(len(result))
-    client.close()
+    def __exit__(self, exc_type, exc, tb):
+        self.close()
