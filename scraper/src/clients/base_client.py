@@ -5,3 +5,4 @@ class BaseAPI(ABC):
     @abstractmethod
     def get(self):
         pass
+    
