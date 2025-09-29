@@ -48,4 +48,6 @@ echo "🚀 Deploying pods from $POD_FILE"
 podman play kube "$POD_FILE"
 
 echo "🎉 Done! Use 'podman pod ps' to check running pods."
-echo "Use podman logs -f scraper-pod-scraper-dev to see the logs of the app."
+echo "Use"
+echo "podman logs -f db-pod-supabase-postgres to see the logs of the database."
+echo "podman logs -f scraper-pod-scraper-dev to see the logs of the app."
