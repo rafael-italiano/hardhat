@@ -32,6 +32,8 @@ spec:
     ports:
       - containerPort: 5432
     volumeMounts:
+    - mountPath: /docker-entrypoint-initdb.d/migrations/
+      name: init-sql
     - mountPath: /var/lib/postgresql/data
       name: pgdata-pvc
   livenessProbe:
@@ -39,7 +41,7 @@ spec:
       command:
         - pg_isready
         - -U
-        - admin
+        - postgres
         - -d
         - postgres
     initialDelaySeconds: 5
@@ -47,6 +49,10 @@ spec:
     timeoutSeconds: 5
     failureThreshold: 10
   volumes:
+  - name: init-sql
+    hostPath:
+      path: ./db/init/
+      type: Directory
   - name: pgdata-pvc
     persistentVolumeClaim:
       claimName: pgdata
