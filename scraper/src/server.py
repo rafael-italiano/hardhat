@@ -9,6 +9,6 @@ from services.models import Product
 app = FastAPI(title="LeroyMerlin Categories API")
 
 @app.get("/")
-def get_categories() -> Product:
+def get_categories():
     service = ProductsServiceMock()
     return service.process()

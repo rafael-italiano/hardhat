@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  db:
+    image: docker.io/supabase/postgres:17.6.1.011
+    container_name: supabase-db
+    env_file: ./database/.env
+    ports:
+      - "5432:5432"
+
+  web:
+    build:
+      context: scraper
+      dockerfile: Containerfile.dev
+    container_name: hardhat-scraper
+    ports:
+      - "8000:8000"
+    env_file: ./scraper/.env
+    depends_on:
+      - db
