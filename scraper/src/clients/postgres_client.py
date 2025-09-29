@@ -5,12 +5,9 @@ from psycopg.rows import dict_row
 
 class PostgresClient():
     def __init__(self, dsn: str):
-        """
-        Initialize client with a connection string (DSN).
-        Example DSN: 'postgresql://user:password@localhost:5432/mydb'
-        """
+
         self.dsn = dsn
-        self.conn = None
+        self.conn = psycopg.connect(self.dsn, row_factory=dict_row)
 
     def __enter__(self):
         self.conn = psycopg.connect(self.dsn, row_factory=dict_row)
@@ -37,3 +34,12 @@ class PostgresClient():
             cur.execute(query, data)
             self.conn.commit()
             return cur.fetchone()  # Return inserted row
+        
+    def test(self):
+        query = "INSERT INTO test VALUES (34) RETURNING *;"
+
+        with self.conn.cursor() as cur:
+            cur.execute(query)
+            self.conn.commit()
+            return cur.fetchone()  # Return inserted row
+        

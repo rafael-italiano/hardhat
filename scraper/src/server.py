@@ -7,4 +7,4 @@ app = FastAPI(title="LeroyMerlin Categories API")
 def get_categories():
     dsn = os.getenv('DATABASE_URL', 'test')
     postgres = PostgresClient(dsn)
-    return dsn
+    return postgres.test()
