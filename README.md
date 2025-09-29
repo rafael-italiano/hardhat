@@ -1,1 +1,3 @@
 # hardhat
+
+\pset pager off
