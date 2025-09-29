@@ -16,15 +16,11 @@ fi
 
 for service in "${SERVICES[@]}"; do
 
-    env_file="./${service}/.env"
+    env_file="./${service}/secrets.yaml"
     if [[ ! -f "$env_file" ]]; then
         echo "❌ Env file for service '$service' not found: $env_file"
+        echo "❌ Please refer to secrets.yaml.template and rename a copy to secrets.yaml"
         exit 1
-    fi
-
-    if podman pod exists "${service}-pod"; then
-        echo "ℹ️ Pod ${service}-pod already exists, deleting it"
-        podman pod rm -f "${service}-pod"
     fi
 
     secret="${service}-env"
@@ -45,7 +41,7 @@ else
 fi
 
 echo "🚀 Deploying pods from $POD_FILE"
-podman play kube "$POD_FILE"
+podman play kube "$POD_FILE" --replace
 
 echo "🎉 Done! Use 'podman pod ps' to check running pods."
 echo "Use"

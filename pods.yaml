@@ -26,7 +26,7 @@ spec:
     - /etc/postgresql
     envFrom:
       - secretRef:
-        name: db-env
+          name: db-env
     image: docker.io/supabase/postgres:17.6.1.011
     name: supabase-postgres
     ports:
@@ -39,7 +39,7 @@ spec:
       command:
         - pg_isready
         - -U
-        - postgres
+        - admin
         - -d
         - postgres
     initialDelaySeconds: 5
@@ -79,7 +79,7 @@ spec:
       image: localhost/hardhat-scraper-dev:latest
       envFrom:
         - secretRef:
-          name: scraper-env
+            name: scraper-env
       volumeMounts:
         - name: scraper-src
           mountPath: /app
