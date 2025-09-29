@@ -16,18 +16,8 @@ class LeroyMerlinCategoryServiceMock(BaseService):
                 "url": "https://www.leroymerlin.com.br/acos-para-construcao-arames"
             },
             {
-                "category": "Aço para Construção",
-                "subcategory": "Vergalhão",
-                "url": "https://www.leroymerlin.com.br/vergalhoes"
-            },
-            {
                 "category": "Madeiras para Construção",
                 "subcategory": "Acessórios para Madeiras",
                 "url": "https://www.leroymerlin.com.br/acessorios-de-madeiras-para-construcao"
-            },
-            {
-                "category": "Areia, Pedra Brita, Gesso, Cal e Argila",
-                "subcategory": "Pedra Brita",
-                "url": "https://www.leroymerlin.com.br/pedra-britada"
             }
         ]
