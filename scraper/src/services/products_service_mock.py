@@ -1,7 +1,8 @@
 from services.base_service import BaseService
-
+from services.models import Product
 class ProductsServiceMock(BaseService):
     def process(self):
+        
         return [
             {
                 "name": "Fibra De Polipropileno Fibromac 12- Pacote 600g",
