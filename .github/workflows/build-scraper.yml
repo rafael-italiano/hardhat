@@ -8,7 +8,7 @@ on:
       - "scraper/**"
 
 jobs:
-  build-and-push:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,5 +26,5 @@ jobs:
       - name: Build
         run: |
           IMAGE="ghcr.io/${{ github.repository_owner }}/hardhat-scraper:${{ github.sha }}"
-          docker build -t $IMAGE -f scraper/Containerfile
+          docker build -t $IMAGE -f Containerfile scraper/
           docker push $IMAGE
