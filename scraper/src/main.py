@@ -23,7 +23,6 @@ if __name__ == '__main__':
 
     dsn = os.getenv('DATABASE_URL')
 
-    logger.info("Initializing services")
     postgres_client = PostgresClient(dsn)
     leroy_merlin_client = LeroyMerlinClient()
     category_service = LeroyMerlinCategoryService()
@@ -32,4 +31,5 @@ if __name__ == '__main__':
         category_service=category_service,
         database=postgres_client
     )
+    logger.info("Initiating product prices processing.")
     service.process()
