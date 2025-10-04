@@ -18,9 +18,14 @@ with open("logger/config.json") as f:
         queue_handler.listener.start()
         atexit.register(queue_handler.listener.stop)
 
+noisy_libs = ['httpcore.http11', 'httpcore.connection']
+for lib in noisy_libs:
+    logging.getLogger(lib).setLevel(logging.INFO)
 
+logger.setLevel(logging.INFO)
 if __name__ == '__main__':
 
+    logger.setLevel(logging.INFO)
     dsn = os.getenv('DATABASE_URL')
 
     postgres_client = PostgresClient(dsn)

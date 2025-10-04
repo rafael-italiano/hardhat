@@ -35,3 +35,4 @@ scraper/venv/
 .history/
 /**/__pycache__/
 .vscode/
+/**/logs/
