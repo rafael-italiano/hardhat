@@ -26,6 +26,5 @@ jobs:
       - name: Build
         run: |
           IMAGE="ghcr.io/${{ github.repository_owner }}/hardhat-scraper:${{ github.sha }}"
-          cd scraper
-          docker build -t $IMAGE -f Containerfile .
+          docker build -t $IMAGE -f Containerfile ./scraper
           docker push $IMAGE
