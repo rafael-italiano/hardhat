@@ -24,6 +24,7 @@
     "stdout": {
       "class": "logging.StreamHandler",
       "formatter": "simple",
+      "level": "INFO"
       "stream": "ext://sys.stdout"
     },
     "queue_handler": {
