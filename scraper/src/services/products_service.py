@@ -38,6 +38,6 @@ class ProductsService(BaseService):
                     updated_at=product['updatedAt'],
                 ) for product in raw_products
             ]
-            logger.info("Loading data into database", extra=category)
+            logger.info("Loading data into database", extra=category["category"])
             self.database.update_products(category_products)
         return category_products
