@@ -1,0 +1,30 @@
+name: Build Scraper
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "scraper/**"
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Log in
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build
+        run: |
+          IMAGE="ghcr.io/${{ github.repository_owner }}/hardhat-scraper:${{ github.sha }}"
+          docker build -t $IMAGE -f scraper/Containerfile
+          docker push $IMAGE
