@@ -8,10 +8,6 @@ from clients.postgres_client import PostgresClient
 from services.products_service import ProductsService
 from services.categories_service import LeroyMerlinCategoryService
 
-from clients.leroy_merlin_client_mock import LeroyMerlinClientMock
-from services.categories_service_mock import LeroyMerlinCategoryServiceMock
-
-
 
 logger = logging.getLogger("hardhat-scraper")
 with open("logger/config.json") as f:
@@ -29,8 +25,8 @@ if __name__ == '__main__':
 
     logger.info("Initializing services")
     postgres_client = PostgresClient(dsn)
-    leroy_merlin_client = LeroyMerlinClientMock()
-    category_service = LeroyMerlinCategoryServiceMock()
+    leroy_merlin_client = LeroyMerlinClient()
+    category_service = LeroyMerlinCategoryService()
     service = ProductsService(
         client=leroy_merlin_client,
         category_service=category_service,
