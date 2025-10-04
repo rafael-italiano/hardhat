@@ -1,4 +1,4 @@
-FROM docker.io/library/python:3.13.7-alpine3.22
+FROM python:3.13.7-alpine3.22 AS builder
 
 ENV PYTHONUNBUFFERED=1
 
@@ -8,13 +8,25 @@ RUN apk add --no-cache \
     python3-dev \
     postgresql-dev \
     libffi-dev \
-    openssl-dev
+    openssl-dev \
+    build-base
+
+COPY requirements.txt requirements.txt
+RUN pip install --no-cache-dir --prefix=/install -r requirements.txt
+
+FROM python:3.13.7-alpine3.22
+
+ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-COPY requirements.txt requirements.txt
-RUN pip install --no-cache-dir --root-user-action=ignore -r requirements.txt
+RUN apk add --no-cache \
+    postgresql-libs \
+    libffi \
+    openssl
+
+COPY --from=builder /install /usr/local
 
 COPY ./src /app
 
-CMD ["ash", "entrypoint.sh"]
+ENTRYPOINT ["ash", "entrypoint.sh"]
