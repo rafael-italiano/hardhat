@@ -1,8 +1,12 @@
+from logging import getLogger
+
 from clients.base_client import BaseAPI
 from clients.base_client import BaseClient
 
 from services.base_service import BaseService
 from services.models import Product
+
+logger = getLogger("__name__")
 
 class ProductsService(BaseService):
 
@@ -14,7 +18,7 @@ class ProductsService(BaseService):
     def process(self):
 
         categories = self.category_service.process()
-
+        logger.info(f"Fetched {categories}")
         for category in categories:
 
             category_name = category['category']
@@ -34,5 +38,6 @@ class ProductsService(BaseService):
                     updated_at=product['updatedAt'],
                 ) for product in raw_products
             ]
+            logger.info("Loading data into database", extra=category)
             self.database.update_products(category_products)
         return category_products
