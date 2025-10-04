@@ -41,14 +41,14 @@ class ProductsService(BaseService):
                         price=product['averagePromotionalPrice'],
                         updated_at=product['updatedAt'],
                     )
-                except KeyError:
-                    logger.error("Product insertion failed", extra={"record":product})
+                except KeyError as e:
+                    logger.error(f"Product insertion failed. {e}", extra={"record":product, "reason": e}, exc_info=True)
                     product = None
                     error_count += 1
                 if product:
                     category_products.append(product)
             logger.info("Loading data into database", extra={"records": len(category_products)})
             if error_count:
-                logger.warning(f"Failed to insert {error_count} records", extra= {'failed_inserts': error_count})
+                logger.warning(f"Failed to insert {error_count} records", extra= {'category': category_name, 'subcategory': subcategory, 'failed_inserts': error_count})
             self.database.update_products(category_products)
         return category_products
