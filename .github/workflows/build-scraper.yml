@@ -12,20 +12,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the repository
-      - name: Checkout code
+
+      - name: Checkout
         uses: actions/checkout@v3
 
-      # Log in to GitHub Container Registry
-      - name: Log in to GHCR
+      - name: Log in
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # Build and push the container
-      - name: Build and Push Docker Image
+      - name: Build
         run: |
           IMAGE="ghcr.io/${{ github.repository_owner }}/hardhat-scraper:${{ github.sha }}"
           docker build -t $IMAGE -f scraper/Containerfile
