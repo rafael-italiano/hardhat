@@ -3,6 +3,8 @@ podman run \
   --name supabase-postgres \
   --pod db-pod \
   --volume pgdata:/var/lib/postgresql/data:z \
+  --volume ./db/init:/docker-entrypoint-initdb.d/migrations/ \
+  --ports 5432:5432 \
   --env-file=.env \
   --health-cmd="pg_isready -U postgres -d postgres" \
   --health-interval=3s \
