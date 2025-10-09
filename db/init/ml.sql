@@ -10,9 +10,7 @@ CREATE TABLE ml.model (
 CREATE TABLE ml.predict_prices (
     id SERIAL PRIMARY KEY,
     model_id INTEGER REFERENCES ml.model(id) ON DELETE SET NULL, 
-    external_id NUMERIC(12,2) NOT NULL,
+    price_id NUMERIC(12,2) NOT NULL,
     date NUMERIC(12,2) NOT NULL,
     predicted_price TIMESTAMP DEFAULT now() NOT NULL
 );
-
-
