@@ -36,3 +36,4 @@ scraper/venv/
 /**/__pycache__/
 .vscode/
 /**/logs/
+src/error.log
