@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e  # Exit immediately on errors
-
-IMAGE="localhost/hardhat-scraper"
+POD_NAME=hardhat-ml
+IMAGE="hardhat-ml"
 CONTAINERFILE="Containerfile"
 
 # Check if the image exists locally
@@ -12,8 +12,13 @@ else
   echo "✅ Image $IMAGE already exists locally."
 fi
 
+podman pod create \
+    --replace \
+    --network podman-default-kube-network \
+    $POD_NAME
+
 podman run \
-  --pod hardhat-scraper \
-  -v ./src:/app \
+  --pod $POD_NAME \
+  --volume ./src:/app \
   --env-file .env \
   $IMAGE

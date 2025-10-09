@@ -7,11 +7,11 @@
       "datefmt": "%Y-%m-%dT%H:%M:%S%z"
     },
     "json": {
-      "()": "logger.logger.MyJSONFormatter",
+      "()": "logger.formatter.MyJSONFormatter",
       "fmt_keys": {
+        "timestamp": "timestamp",
         "level": "levelname",
         "message": "message",
-        "timestamp": "timestamp",
         "logger": "name",
         "module": "module",
         "function": "funcName",
@@ -38,7 +38,8 @@
     "queue_handler": {
       "class": "logging.handlers.QueueHandler",
       "handlers": [
-        "stdout"
+        "stdout",
+        "file_json"
       ],
       "respect_handler_level": true
     }
