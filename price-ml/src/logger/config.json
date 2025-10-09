@@ -31,15 +31,14 @@
       "class": "logging.handlers.RotatingFileHandler",
       "level": "WARNING",
       "formatter": "json",
-      "filename": "logs/error.log",
+      "filename": "error.log",
       "maxBytes": 10485760,
       "backupCount": 3
     },
     "queue_handler": {
       "class": "logging.handlers.QueueHandler",
       "handlers": [
-        "stdout",
-        "file_json"
+        "stdout"
       ],
       "respect_handler_level": true
     }
