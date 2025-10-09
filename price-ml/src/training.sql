@@ -10,15 +10,15 @@ WITH daily_avg AS (
         subcategory_id,
         products.external_id,
         prices.created_at::DATE
-),
-previous_average as (SELECT
-    external_id,
-    price_date,
-    daily_average_price,
-    LAG(daily_average_price, 1, NULL) OVER (PARTITION BY external_id ORDER BY price_date) AS previous_day_average_price,
-    subcategory_id
-FROM daily_avg)
-
-select *
- from previous_average
- where previous_day_average_price is not null;
+), previous_average as (
+    SELECT
+        external_id,
+        price_date,
+        daily_average_price,
+        LAG(daily_average_price, 1, NULL) OVER (PARTITION BY external_id ORDER BY price_date) AS previous_day_average_price,
+        subcategory_id
+    FROM daily_avg
+)
+SELECT *
+FROM previous_average
+WHERE previous_day_average_price IS NOT NULL;

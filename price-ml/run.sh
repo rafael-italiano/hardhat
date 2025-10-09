@@ -18,6 +18,7 @@ podman pod create \
     $POD_NAME
 
 podman run \
+  --name price-ml \
   --pod $POD_NAME \
   --volume ./src:/app \
   --env-file .env \
